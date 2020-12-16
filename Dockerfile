@@ -8,10 +8,12 @@ RUN apt-get update && \
 	wget \
 	tar \
 	git && \
-	rm -rf /var/lib/apt/lists/*
-CMD wget https://dl.google.com/go/go1.15.6.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz && rm go1.15.6.linux-amd64.tar.gz
-CMD export PATH=$PATH:/usr/local/go/bin
-CMD go version
+	rm -rf /var/lib/apt/lists/* && \
+	wget https://dl.google.com/go/go1.15.6.linux-amd64.tar.gz && \
+	tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz && \
+	rm go1.15.6.linux-amd64.tar.gz && \
+	export PATH=$PATH:/usr/local/go/bin
+	
 COPY action.sh /usr/bin/action.sh
 
 ENTRYPOINT ["action.sh"]
